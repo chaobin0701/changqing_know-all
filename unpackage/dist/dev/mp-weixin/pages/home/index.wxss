@@ -1,0 +1,30 @@
+
+.uni-margin-wrap {
+			width: 100%;
+}
+.swiper {
+			height: 42.85vw;
+}
+.swiper-item {
+			display: block;
+			height: 100%;
+			line-height: 100rpx;
+			text-align: center;
+			background-color: red;
+}
+.swiper-list {
+			margin-top: 40rpx;
+			margin-bottom: 0;
+}
+.uni-common-mt {
+			margin-top: 60rpx;
+			position: relative;
+}
+.info {
+			position: absolute;
+			right: 20rpx;
+}
+.uni-padding-wrap {
+			width: 550rpx;
+			padding: 0 100rpx;
+}

@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/community/index",
+    "pages/user/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "iconPath": "static/images/tabbar/zhuye.png",
+        "selectedIconPath": "static/images/tabbar/zhuye_active.png",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/community/index",
+        "iconPath": "static/images/tabbar/shequ.png",
+        "selectedIconPath": "static/images/tabbar/shequ_active.png",
+        "text": "社区"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "static/images/tabbar/user.png",
+        "selectedIconPath": "static/images/tabbar/user_active.png",
+        "text": "我的信息"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
