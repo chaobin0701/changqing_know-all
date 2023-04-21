@@ -1,1 +1,1 @@
-<view> 社区 </view>
+<view class="community-wrapper"><global-search u-i="4837df1a-0" bind:__l="__l"></global-search><view class="category-wrapper"><view class="category-wrapper-inner"><view class="category-item-wrapper active"> 推荐 </view><view wx:for="{{a}}" wx:for-item="i" class="category-item-wrapper"> 明星 </view></view></view></view>

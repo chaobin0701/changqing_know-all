@@ -1,0 +1,7 @@
+{
+  "name": "WebsiteContent",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

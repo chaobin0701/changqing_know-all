@@ -24,70 +24,29 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-/* 轮播图样式 */
-.uni-margin-wrap {
-  width: 100%;
-}
-.swiper {
-  height: 42.85vw;
-}
-.swiper-item {
-  display: block;
-  height: 100%;
-  line-height: 100rpx;
-  text-align: center;
-  background-color: red;
-}
-.swiper-list {
-  margin-top: 40rpx;
-  margin-bottom: 0;
-}
-.uni-common-mt {
-  margin-top: 60rpx;
-  position: relative;
-}
-.info {
-  position: absolute;
-  right: 20rpx;
-}
-.uni-padding-wrap {
-  width: 550rpx;
-  padding: 0 100rpx;
-}
-
-/* 功能区 */
-.icons-wrapper {
+.search-wrapper {
   width: 100vw;
+  height: 90rpx;
+  background-color: #f2f2f2;
   box-sizing: border-box;
-  padding: 2.5%;
-  height: 47.5vw;
-  border: 1px solid red;
+  padding: 18rpx 30rpx;
 }
-.icons-wrapper .icons-wrapper-inner {
+.search-wrapper-ineer {
   height: 100%;
   width: 100%;
-  background-color: #f8f8f8;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
-.icons-wrapper .icons-item-wrapper {
-  width: 25%;
-  height: 50%;
+.search-wrapper-ineer input {
   box-sizing: border-box;
+  height: 100%;
   padding: 10rpx;
-  border: 1px solid #ccc;
+  border-radius: 5rpx;
+  flex: 1;
+  background-color: #fff;
+  margin-right: 20rpx;
 }
-.icons-wrapper .icons-item {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.icons-wrapper .icons-item .icons-item-img {
-  height: 55%;
-  width: 55%;
+.search-wrapper-ineer text {
+  font-size: 30rpx;
 }
