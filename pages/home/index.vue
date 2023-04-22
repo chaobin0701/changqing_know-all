@@ -6,23 +6,33 @@
 		<view class="uni-margin-wrap">
 			<swiper class="swiper" circular :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval"
 				:duration="duration">
-				<swiper-item v-for="item in carouselInfo">
-					<img :src="item.image_url" srcset="" lazy-load="true" mode="aspectFit" style="height: 100%; width: 100%;">
+				<swiper-item v-for="(item,index) in carouselInfo" :key="index">
+					<navigator :url="item.link_url">
+						<img :src="item.image_url" srcset="" lazy-load="true" mode="aspectFit"
+							style="height: 100%; width: 100%;">
+					</navigator>
 				</swiper-item>
 			</swiper>
 		</view>
 		<!-- 功能列表 -->
 		<view class="icons-wrapper">
 			<view class="icons-wrapper-inner">
-				<view class="icons-item-wrapper" v-for="i in 8">
-					<a href="#" class="icons-item">
-						<img class="icons-item-img" src="@/static/images/grid/chaoshi.png" alt="">
-						<p class="icons-item-title">超市</p>
-					</a>
+				<view class="icons-item-wrapper" v-for="(icon,index) in iconsInfo.slice(0,7)" :key="index">
+					<navigator :url="icon.link_url" class="icons-item">
+						<img class="icons-item-img" :src="icon.icon_url" :alt="icon.title">
+						<p class="icons-item-title">{{icon.title}}</p>
+					</navigator>
+				</view>
+				<!-- 如果功能列表的数量超过八个,则加载 "更多功能页面" -->
+				<view class="icons-item-wrapper" v-if="iconsInfo.length > 6">
+					<navigator url="/pages/home/grid/more/more" class="icons-item">
+						<img class="icons-item-img" src="@/static/images/grid/more.png" alt="更多功能">
+						<p class="icons-item-title">更多功能</p>
+					</navigator>
 				</view>
 			</view>
 		</view>
-		<!--  -->
+		<!-- 占位符 -->
 		<view class="fo" style="height: 500rpx;order: 1px solid green;box-sizing: border-box;">
 			<text style="color: red; b ">
 				占位: 功能设想, 软广区域? 热门帖子区域? 文章区域?
@@ -32,47 +42,47 @@
 </template>
 
 <script>
-import globalSearch from '../../components/global-search/index.vue'
+	import globalSearch from '../../components/global-search/index.vue'
 	export default {
 		data() {
 			return {
 				indicatorDots: true,
 				autoplay: true,
-				interval: 4000,
+				interval: 4000000,
 				duration: 500,
-				carouselInfo:[], // 轮播图数据
+				carouselInfo: [], // 轮播图数据
+				iconsInfo: [], // 功能区数据
 			}
 		},
-		components:{
+		components: {
 			globalSearch
 		},
 		methods: {
-			changeIndicatorDots(e) {
-				this.indicatorDots = !this.indicatorDots
-			},
-			changeAutoplay(e) {
-				this.autoplay = !this.autoplay
-			},
-			intervalChange(e) {
-				this.interval = e.target.value
-			},
-			durationChange(e) {
-				this.duration = e.target.value
-			},
-			async getCarousel(){
+			/* 获取轮播图数据 */
+			async getCarouselInfo() {
 				const WebsiteContent = uniCloud.importObject("WebsiteContent")
-				try{
+				try {
 					const res = await WebsiteContent.getCarousel()
 					this.carouselInfo = res.data
-					console.log(res.data)
-				}catch(e){
+				} catch (e) {
 					console.warn("轮播图数据获取错误")
 				}
-			}
+			},
+			/* 获取功能区数据 */
+			async getIconsInfo() {
+				const WebsiteContent = uniCloud.importObject("WebsiteContent")
+				try {
+					const res = await WebsiteContent.getIcons()
+					this.iconsInfo = res.data
+				} catch (e) {
+					console.warn("功能区数据获取错误")
+				}
+			},
 
 		},
-		created(){
-			this.getCarousel()
+		created() {
+			this.getCarouselInfo()
+			this.getIconsInfo()
 		}
 	}
 </script>
@@ -85,6 +95,11 @@ import globalSearch from '../../components/global-search/index.vue'
 
 	.swiper {
 		height: 42.85vw;
+
+		navigator {
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	.swiper-item {
@@ -119,9 +134,8 @@ import globalSearch from '../../components/global-search/index.vue'
 	.icons-wrapper {
 		width: 100vw;
 		box-sizing: border-box;
-		padding: 2.5%;
-		height: 47.5vw;
-		border: 1px solid red;
+		padding: 1.25% 2.5%;
+		height: 50vw;
 
 		.icons-wrapper-inner {
 			height: 100%;
@@ -131,6 +145,8 @@ import globalSearch from '../../components/global-search/index.vue'
 			flex-wrap: wrap;
 			align-items: center;
 			justify-content: center;
+			border-radius: 18rpx;
+			background-color: #fff;
 		}
 
 		.icons-item-wrapper {
@@ -138,7 +154,6 @@ import globalSearch from '../../components/global-search/index.vue'
 			height: 50%;
 			box-sizing: border-box;
 			padding: 10rpx;
-			border: 1px solid #ccc;
 		}
 
 		.icons-item {

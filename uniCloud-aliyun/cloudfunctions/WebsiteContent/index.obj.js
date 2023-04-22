@@ -12,6 +12,15 @@ module.exports = {
 		const db = uniCloud.database()
 		let res = await db.collection("carousel").orderBy('order','asc').get()
 		return res
+	},
+	/**
+	 * 获取轮播图数据
+	 * @returns {object} 返回轮播图数据
+	 */
+	getIcons:async function() {
+		const db = uniCloud.database()
+		let res = await db.collection("icons").orderBy('order','asc').get()
+		return res
 	}
 	
 }

@@ -18,7 +18,70 @@
 				"navigationBarTitleText": "我的信息"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/home/grid/food/food",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "长卿美食",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/home/grid/scenicSpot/scenicSpot",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "长卿山水",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/home/grid/housekeeping/housekeeping",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "家政服务",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/home/grid/expressDelivery/expressDelivery",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "快递代收",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+		    "path" : "pages/home/grid/supermarket/supermarket",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "超市到家",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		{
+		    "path" : "pages/home/grid/map/map",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "长卿地图",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		{
+		    "path" : "pages/home/grid/more/more",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "更多服务",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

@@ -1,9 +1,13 @@
 .category-wrapper {
-  width: 100%;
+  width: 100vw;
   height: 80rpx;
   box-sizing: border-box;
   padding: 0rpx 30rpx;
   background-color: #f2f2f2;
+}
+.float-box {
+  position: fixed;
+  top: 0;
 }
 .category-wrapper-inner {
   height: 100%;
@@ -11,6 +15,8 @@
   align-items: center;
   box-sizing: border-box;
   padding: 0 0 20rpx 0;
+  overflow: hidden;
+  overflow-x: scroll;
 }
 .category-wrapper-inner .category-item-wrapper {
   box-sizing: border-box;
@@ -19,8 +25,14 @@
   background-color: #fff;
   font-size: 28rpx;
   margin-right: 20rpx;
+  white-space: nowrap;
+  transition: all 0.2s;
 }
 .category-wrapper-inner .category-item-wrapper.active {
   color: #fff;
   background-color: green;
+}
+/* 帖子的列表 */
+.article-list {
+  margin-top: 180rpx;
 }

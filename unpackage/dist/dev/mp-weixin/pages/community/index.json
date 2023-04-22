@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "社区",
   "usingComponents": {
-    "global-search": "../../components/global-search/index"
+    "global-search": "../../components/global-search/index",
+    "community-article": "../../components/community-article/index"
   }
 }

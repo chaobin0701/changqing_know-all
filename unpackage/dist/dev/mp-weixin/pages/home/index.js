@@ -7,41 +7,42 @@ const _sfc_main = {
     return {
       indicatorDots: true,
       autoplay: true,
-      interval: 4e3,
+      interval: 4e6,
       duration: 500,
-      carouselInfo: []
+      carouselInfo: [],
       // 轮播图数据
+      iconsInfo: []
+      // 功能区数据
     };
   },
   components: {
     globalSearch
   },
   methods: {
-    changeIndicatorDots(e) {
-      this.indicatorDots = !this.indicatorDots;
-    },
-    changeAutoplay(e) {
-      this.autoplay = !this.autoplay;
-    },
-    intervalChange(e) {
-      this.interval = e.target.value;
-    },
-    durationChange(e) {
-      this.duration = e.target.value;
-    },
-    async getCarousel() {
+    /* 获取轮播图数据 */
+    async getCarouselInfo() {
       const WebsiteContent = common_vendor.Es.importObject("WebsiteContent");
       try {
         const res = await WebsiteContent.getCarousel();
         this.carouselInfo = res.data;
-        console.log(res.data);
       } catch (e) {
         console.warn("轮播图数据获取错误");
+      }
+    },
+    /* 获取功能区数据 */
+    async getIconsInfo() {
+      const WebsiteContent = common_vendor.Es.importObject("WebsiteContent");
+      try {
+        const res = await WebsiteContent.getIcons();
+        this.iconsInfo = res.data;
+      } catch (e) {
+        console.warn("功能区数据获取错误");
       }
     }
   },
   created() {
-    this.getCarousel();
+    this.getCarouselInfo();
+    this.getIconsInfo();
   }
 };
 if (!Array) {
@@ -49,21 +50,31 @@ if (!Array) {
   _component_globalSearch();
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return {
-    a: common_vendor.f($data.carouselInfo, (item, k0, i0) => {
+  return common_vendor.e({
+    a: common_vendor.f($data.carouselInfo, (item, index, i0) => {
       return {
-        a: item.image_url
+        a: item.image_url,
+        b: item.link_url,
+        c: index
       };
     }),
     b: $data.indicatorDots,
     c: $data.autoplay,
     d: $data.interval,
     e: $data.duration,
-    f: common_vendor.f(8, (i, k0, i0) => {
-      return {};
+    f: common_vendor.f($data.iconsInfo.slice(0, 7), (icon, index, i0) => {
+      return {
+        a: icon.icon_url,
+        b: icon.title,
+        c: common_vendor.t(icon.title),
+        d: icon.link_url,
+        e: index
+      };
     }),
-    g: common_assets._imports_0
-  };
+    g: $data.iconsInfo.length > 6
+  }, $data.iconsInfo.length > 6 ? {
+    h: common_assets._imports_0
+  } : {});
 }
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "C:/Users/Administrator.DESKTOP-EEIPDMU/Desktop/changqing_know-all/pages/home/index.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "C:/Users/83707/Desktop/changqing_know-all/pages/home/index.vue"]]);
 wx.createPage(MiniProgramPage);

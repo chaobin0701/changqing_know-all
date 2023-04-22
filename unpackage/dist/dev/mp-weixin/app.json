@@ -2,7 +2,14 @@
   "pages": [
     "pages/home/index",
     "pages/community/index",
-    "pages/user/index"
+    "pages/user/index",
+    "pages/home/grid/food/food",
+    "pages/home/grid/scenicSpot/scenicSpot",
+    "pages/home/grid/housekeeping/housekeeping",
+    "pages/home/grid/expressDelivery/expressDelivery",
+    "pages/home/grid/supermarket/supermarket",
+    "pages/home/grid/map/map",
+    "pages/home/grid/more/more"
   ],
   "window": {
     "navigationBarTextStyle": "black",
