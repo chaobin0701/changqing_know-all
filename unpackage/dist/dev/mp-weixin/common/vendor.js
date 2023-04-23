@@ -14,6 +14,38 @@ function makeMap(str, expectsLowerCase) {
   }
   return expectsLowerCase ? (val) => !!map[val.toLowerCase()] : (val) => !!map[val];
 }
+function normalizeStyle(value) {
+  if (isArray(value)) {
+    const res = {};
+    for (let i2 = 0; i2 < value.length; i2++) {
+      const item = value[i2];
+      const normalized = isString(item) ? parseStringStyle(item) : normalizeStyle(item);
+      if (normalized) {
+        for (const key in normalized) {
+          res[key] = normalized[key];
+        }
+      }
+    }
+    return res;
+  } else if (isString(value)) {
+    return value;
+  } else if (isObject$1(value)) {
+    return value;
+  }
+}
+const listDelimiterRE = /;(?![^(]*\))/g;
+const propertyDelimiterRE = /:([^]+)/;
+const styleCommentRE = /\/\*.*?\*\//gs;
+function parseStringStyle(cssText) {
+  const ret = {};
+  cssText.replace(styleCommentRE, "").split(listDelimiterRE).forEach((item) => {
+    if (item) {
+      const tmp = item.split(propertyDelimiterRE);
+      tmp.length > 1 && (ret[tmp[0].trim()] = tmp[1].trim());
+    }
+  });
+  return ret;
+}
 function normalizeClass(value) {
   let res = "";
   if (isString(value)) {
@@ -6185,12 +6217,34 @@ function vFor(source, renderItem) {
   }
   return ret;
 }
+function stringifyStyle(value) {
+  if (isString(value)) {
+    return value;
+  }
+  return stringify(normalizeStyle(value));
+}
+function stringify(styles) {
+  let ret = "";
+  if (!styles || isString(styles)) {
+    return ret;
+  }
+  for (const key in styles) {
+    ret += `${key.startsWith(`--`) ? key : hyphenate(key)}:${styles[key]};`;
+  }
+  return ret;
+}
+function setRef(ref2, id, opts = {}) {
+  const { $templateRefs } = getCurrentInstance();
+  $templateRefs.push({ i: id, r: ref2, k: opts.k, f: opts.f });
+}
 const o$1 = (value, key) => vOn(value, key);
 const f$1 = (source, renderItem) => vFor(source, renderItem);
+const s$1 = (value) => stringifyStyle(value);
 const e = (target, ...sources) => extend(target, ...sources);
 const n$1 = (value) => normalizeClass(value);
 const t$1 = (val) => toDisplayString(val);
 const p$1 = (props) => renderProps(props);
+const sr = (ref2, id, opts) => setRef(ref2, id, opts);
 function createApp$1(rootComponent, rootProps = null) {
   rootComponent && (rootComponent.mpType = "app");
   return createVueApp(rootComponent, rootProps).use(plugin);
@@ -7365,7 +7419,7 @@ function g(e2) {
 function m(e2) {
   return e2 && "string" == typeof e2 ? JSON.parse(e2) : e2;
 }
-const y = true, _ = "mp-weixin", v = m([]), S = _, k = m('{\n    "address": [\n        "127.0.0.1",\n        "192.168.238.80"\n    ],\n    "debugPort": 9000,\n    "initialLaunchType": "remote",\n    "servePort": 7000,\n    "skipFiles": [\n        "<node_internals>/**",\n        "D:/profile/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), I = m('[{"provider":"aliyun","spaceName":"changqing","spaceId":"mp-68f8069b-5146-4ecf-8dc8-7243de371e72","clientSecret":"97cFEmwXv4XxhX+2xEPdMA==","endpoint":"https://api.next.bspapp.com"}]') || [];
+const y = true, _ = "mp-weixin", v = m([]), S = _, k = m('{\n    "address": [\n        "127.0.0.1",\n        "192.168.10.22"\n    ],\n    "debugPort": 9001,\n    "initialLaunchType": "local",\n    "servePort": 7001,\n    "skipFiles": [\n        "<node_internals>/**",\n        "D:/Program Files/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), I = m('[{"provider":"aliyun","spaceName":"changqing","spaceId":"mp-68f8069b-5146-4ecf-8dc8-7243de371e72","clientSecret":"97cFEmwXv4XxhX+2xEPdMA==","endpoint":"https://api.next.bspapp.com"}]') || [];
 let T = "";
 try {
   T = "__UNI__AFCBA03";
@@ -9471,8 +9525,11 @@ exports._export_sfc = _export_sfc;
 exports.createSSRApp = createSSRApp;
 exports.e = e;
 exports.f = f$1;
+exports.index = index;
 exports.n = n$1;
 exports.o = o$1;
 exports.p = p$1;
 exports.resolveComponent = resolveComponent;
+exports.s = s$1;
+exports.sr = sr;
 exports.t = t$1;

@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "长卿美食",
   "enablePullDownRefresh": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "global-search": "../../../../components/global-search/index"
+  }
 }

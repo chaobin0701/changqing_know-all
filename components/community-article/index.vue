@@ -27,7 +27,6 @@
 					</view>
 				</view>
 				<view class="interaction-bar-right">
-
 					<view class="interaction-item">
 						<uni-icons type="chat" size="24"></uni-icons>34
 					</view>

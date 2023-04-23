@@ -13,6 +13,7 @@
 </script>
 
 <style lang="scss">
+	@import "@/static/iconfont.css";
 	/*每个页面公共css */
 	page {
 		background-color: rgb(244, 244, 244);

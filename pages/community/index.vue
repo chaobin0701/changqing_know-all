@@ -15,8 +15,10 @@
 		</view>
 		<!-- article_帖子 -->
 		<view class="article-list">
-			<communityArticle v-for="i in 10" :key="index"></communityArticle>
+			<communityArticle v-for="i in 3" :key="index"></communityArticle>
 		</view>
+		<!-- 发布帖子 -->
+		<communityPublish></communityPublish>
 		
 	</view>
 </template>
@@ -24,6 +26,7 @@
 <script>
 	import globalSearch from '../../components/global-search/index.vue'
 	import communityArticle from "../../components/community-article/index.vue"
+	import communityPublish from "../../components/community-publish/index.vue"
 	export default {
 		data() {
 			return {
@@ -33,6 +36,7 @@
 		components: {
 			globalSearch,
 			communityArticle,
+			communityPublish
 		},
 		methods: {
 			/* 切换不同分类 */
